@@ -20,7 +20,8 @@
 		"source=./.basic-ssl,target=${containerWorkspaceFolder}/.basic-ssl,type=bind,consistency=cached"
 	],
 	"workspaceFolder": "/workspace/app",
-	"initializeCommand": "sh script/generateKey.sh",
+	// issue for ssh agent by colima
+	"initializeCommand": "ssh-add --apple-load-keychain && sh script/generateKey.sh",
 	"postCreateCommand": "sudo chown node ${containerWorkspaceFolder}",
 	"customizations": {
 		"vscode": {
@@ -39,5 +40,6 @@
 	},
 	"runArgs": [
     "--network=devcontainer"
-	]
+	],
+	"appPort": [ 443 ]
 }
